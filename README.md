@@ -189,6 +189,16 @@ Created by `python manage.py seed_demo`:
 
 ## Render Deployment Guide
 
+### Common Render Build Error
+If you see:
+`ERROR: Could not open requirements file: [Errno 2] No such file or directory: 'requirements.txt'`
+
+It means Render is building from repository root while your Python app is inside [backend](backend).
+
+Fix one of these ways:
+- Set **Root Directory** to `backend` in Render service settings, or
+- Use the included [render.yaml](render.yaml) blueprint.
+
 ### 1) Deploy Backend (Django API)
 - Create a **Web Service** from this repo.
 - Root directory: `backend`
@@ -206,6 +216,7 @@ Set environment variables in Render:
 - `DJANGO_DEBUG=False`
 - `DJANGO_ALLOWED_HOSTS=YOUR-RENDER-BACKEND.onrender.com`
 - `CORS_ALLOWED_ORIGINS=https://YOUR-RENDER-FRONTEND.onrender.com`
+- `DATABASE_URL` (recommended, from Render PostgreSQL)
 - `POSTGRES_DB`
 - `POSTGRES_USER`
 - `POSTGRES_PASSWORD`
@@ -213,6 +224,8 @@ Set environment variables in Render:
 - `POSTGRES_PORT`
 
 Use a Render PostgreSQL instance (or external PostgreSQL) and map the credentials above.
+
+> The backend supports both `DATABASE_URL` and `POSTGRES_*` variables. On Render, prefer `DATABASE_URL`.
 
 ### 2) Deploy Frontend (Next.js)
 - Create a **Web Service** from this repo.
