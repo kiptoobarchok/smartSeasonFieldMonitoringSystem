@@ -69,11 +69,14 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.getenv("POSTGRES_DB", "smartseason"),
-            "USER": os.getenv("POSTGRES_USER", "smartseason_user"),
-            "PASSWORD": os.getenv("POSTGRES_PASSWORD", "smartseason_password"),
-            "HOST": os.getenv("POSTGRES_HOST", "localhost"),
-            "PORT": os.getenv("POSTGRES_PORT", "5432"),
+            "NAME": os.getenv("PGDATABASE", os.getenv("POSTGRES_DB", "smartseason")),
+            "USER": os.getenv("PGUSER", os.getenv("POSTGRES_USER", "smartseason_user")),
+            "PASSWORD": os.getenv(
+                "PGPASSWORD",
+                os.getenv("POSTGRES_PASSWORD", "smartseason_password"),
+            ),
+            "HOST": os.getenv("PGHOST", os.getenv("POSTGRES_HOST", "localhost")),
+            "PORT": os.getenv("PGPORT", os.getenv("POSTGRES_PORT", "5432")),
         }
     }
 

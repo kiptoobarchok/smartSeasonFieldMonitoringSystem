@@ -217,15 +217,17 @@ Set environment variables in Render:
 - `DJANGO_ALLOWED_HOSTS=YOUR-RENDER-BACKEND.onrender.com`
 - `CORS_ALLOWED_ORIGINS=https://YOUR-RENDER-FRONTEND.onrender.com`
 - `DATABASE_URL` (recommended, from Render PostgreSQL)
-- `POSTGRES_DB`
-- `POSTGRES_USER`
-- `POSTGRES_PASSWORD`
-- `POSTGRES_HOST`
-- `POSTGRES_PORT`
+- If not using `DATABASE_URL`, set Render PostgreSQL values:
+   - `PGDATABASE`
+   - `PGUSER`
+   - `PGPASSWORD`
+   - `PGHOST`
+   - `PGPORT`
 
 Use a Render PostgreSQL instance (or external PostgreSQL) and map the credentials above.
 
 > The backend supports both `DATABASE_URL` and `POSTGRES_*` variables. On Render, prefer `DATABASE_URL`.
+> The backend also prefers `PG*` environment variables, which is what Render PostgreSQL exposes when attached.
 
 > The backend is pinned to Python 3.12.8 via [backend/runtime.txt](backend/runtime.txt) for Render stability.
 
