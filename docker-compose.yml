@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: smartseason-postgres
+    environment:
+      POSTGRES_DB: smartseason
+      POSTGRES_USER: smartseason_user
+      POSTGRES_PASSWORD: smartseason_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
