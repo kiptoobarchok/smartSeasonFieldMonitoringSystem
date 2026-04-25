@@ -227,6 +227,8 @@ Use a Render PostgreSQL instance (or external PostgreSQL) and map the credential
 
 > The backend supports both `DATABASE_URL` and `POSTGRES_*` variables. On Render, prefer `DATABASE_URL`.
 
+> The backend is pinned to Python 3.12.8 via [backend/runtime.txt](backend/runtime.txt) for Render stability.
+
 ### 2) Deploy Frontend (Next.js)
 - Create a **Web Service** from this repo.
 - Root directory: `frontend`
